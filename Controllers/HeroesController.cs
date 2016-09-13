@@ -18,10 +18,8 @@ namespace goldencardAPI.Controllers
 
         // GET api/heroes
         [HttpGet]
-        public IEnumerable<Hero> Get(string name)
+        public IEnumerable<Hero> Get()
         {
-            var query = _context.Heroes;
-
             return _context
             .Heroes
             .Select(h => new Hero()
