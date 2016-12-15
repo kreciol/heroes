@@ -11,9 +11,14 @@ namespace Models
         public DbSet<Hero> Heroes { get; set; }
     }
 
-    public class Hero
+    public class Hero : Entity
+    {
+
+        public string Name { get; set; }
+    }
+
+    public class Entity
     {
         public int Id { get; set; }
-        public string Name { get; set; }
     }
 }

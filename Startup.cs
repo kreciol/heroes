@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace goldencardAPI
 {
@@ -27,7 +28,8 @@ namespace goldencardAPI
         {
             var connection = @"Server=.;Database=Heroes;Trusted_Connection=True;";
             services.AddDbContext<Models.HeroContext>(options => options.UseSqlServer(connection));
-
+            services.AddTransient(typeof(Repositories.HeroRepository));
+            
             // Add framework services.
             services.AddMvc();
             var corsBuilder = new CorsPolicyBuilder();
@@ -43,6 +45,7 @@ namespace goldencardAPI
 
             // Inject an implementation of ISwaggerProvider with defaulted settings applied
             services.AddSwaggerGen();
+            services.AddAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
