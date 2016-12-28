@@ -1,7 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using ViewModels;
 

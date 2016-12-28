@@ -15,9 +15,9 @@ namespace Repositories
 
     public abstract class BaseRepository<TModel, TViewModel> where TModel: Models.Entity
     {
+        protected readonly Models.HeroContext _context;
         protected readonly DbSet<TModel> _set;
         protected readonly IMapper _mapper;
-        protected readonly Models.HeroContext _context;
 
         protected BaseRepository(Models.HeroContext context, IMapper mapper)
         {
@@ -43,31 +43,25 @@ namespace Repositories
         
         public void Delete(int id)
         {
-            var model = _set.First(h => h.Id == id);
+            TModel model = _set.First(h => h.Id == id);
             _set.Remove(model);
             _context.SaveChanges();
-           
         }
 
         public TViewModel Add(TViewModel viewModel)
         {
             TModel model = _mapper.Map<TModel>(viewModel);
-
             _set.Add(model);
             _context.SaveChanges();
-
             return _mapper.Map<TViewModel>(model);
         }
 
         public TViewModel Update(int id, TViewModel viewModel)
         {
             TModel model = _set.First(h => h.Id == id);
-
             _mapper.Map<TViewModel, TModel>(viewModel, model);
-
             _set.Update(model);
             _context.SaveChanges();
-
             return viewModel;
         } 
     }
