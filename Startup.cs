@@ -32,6 +32,8 @@ namespace goldencardAPI
             
             // Add framework services.
             services.AddMvc();
+            services.AddSignalR();
+            
             var corsBuilder = new CorsPolicyBuilder();
             corsBuilder.AllowAnyHeader();
             corsBuilder.AllowAnyMethod();
@@ -56,6 +58,8 @@ namespace goldencardAPI
 
             app.UseCors("AllowAll");
             app.UseMvc();
+            app.UseWebSockets();
+            app.UseSignalR();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint
             app.UseSwagger();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using ViewModels;
@@ -5,6 +6,7 @@ using ViewModels;
 namespace Controllers
 {
     [Route("api/[controller]")]
+    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public class HeroesController : Controller
     {
         private readonly Repositories.HeroRepository _heroRepository;
