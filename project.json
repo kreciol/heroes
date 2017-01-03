@@ -6,6 +6,8 @@
       "type": "platform"
     },
     "Microsoft.AspNetCore.Mvc": "1.1.0",
+    "Microsoft.AspNetCore.Diagnostics": "1.1.0",
+    "Microsoft.AspNetCore.StaticFiles": "1.1.0",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.1.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.1.0",
     "Microsoft.Extensions.Configuration.EnvironmentVariables": "1.1.0",
@@ -17,6 +19,7 @@
     "Microsoft.Extensions.Logging.Debug": "1.1.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.1.0",
     // "Swashbuckle": "6.0.0-rc1-final",
+    "Microsoft.EntityFrameworkCore": "1.1.0",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
     "Microsoft.EntityFrameworkCore.Design": "1.1.0",
     "AutoMapper": "5.2.0",
@@ -26,7 +29,8 @@
   },
 
   "tools": {
-    "Microsoft.EntityFrameworkCore.Tools.DotNet": "1.1.0-preview4"
+    "Microsoft.AspNetCore.Server.IISIntegration.Tools":"1.1.0-preview4-final",
+    "Microsoft.EntityFrameworkCore.Tools.DotNet": "1.1.0-preview4-final"
   },
 
   "frameworks": {
@@ -44,7 +48,10 @@
   "buildOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true,
-	  "debugType": "portable"
+	  "debugType": "portable",
+    "compile": {
+        "exclude": ["node_modules"]
+    }
   },
 
   "runtimeOptions": {

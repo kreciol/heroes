@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using Microsoft.Extensions.FileProviders;
 
 namespace goldencardAPI
 {
@@ -34,17 +35,6 @@ namespace goldencardAPI
             services.AddMvc();
             services.AddSignalR();
 
-            var corsBuilder = new CorsPolicyBuilder();
-            corsBuilder.AllowAnyHeader();
-            corsBuilder.AllowAnyMethod();
-            corsBuilder.AllowAnyOrigin();
-            corsBuilder.AllowCredentials();
-
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAll", corsBuilder.Build());
-            });
-
             // Inject an implementation of ISwaggerProvider with defaulted settings applied
             //services.AddSwaggerGen();
             services.AddAutoMapper();
@@ -56,7 +46,23 @@ namespace goldencardAPI
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseCors("AllowAll");
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseStatusCodePages();
+                //app.UseDatabaseErrorPage();
+                //app.UseBrowserLink();
+            }
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(System.IO.Path.Combine(env.ContentRootPath, "node_modules")),
+                RequestPath = "/node_modules"
+            });
+            
             app.UseMvc();
             app.UseWebSockets();
             app.UseSignalR();
