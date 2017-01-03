@@ -33,7 +33,7 @@ namespace goldencardAPI
             // Add framework services.
             services.AddMvc();
             services.AddSignalR();
-            
+
             var corsBuilder = new CorsPolicyBuilder();
             corsBuilder.AllowAnyHeader();
             corsBuilder.AllowAnyMethod();
@@ -46,7 +46,7 @@ namespace goldencardAPI
             });
 
             // Inject an implementation of ISwaggerProvider with defaulted settings applied
-            services.AddSwaggerGen();
+            //services.AddSwaggerGen();
             services.AddAutoMapper();
         }
 
@@ -62,10 +62,10 @@ namespace goldencardAPI
             app.UseSignalR();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint
-            app.UseSwagger();
+            //app.UseSwagger();
 
             // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
-            app.UseSwaggerUi();
+            //app.UseSwaggerUi();
         }
     }
 }
