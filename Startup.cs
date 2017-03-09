@@ -28,7 +28,8 @@ namespace goldencardAPI
         public void ConfigureServices(IServiceCollection services)
         {
             var connection = @"Server=.;Database=Heroes;Trusted_Connection=True;";
-            services.AddDbContext<Models.HeroContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<Models.HeroContext>(options => options.UseInMemoryDatabase());
+            //services.AddDbContext<Models.HeroContext>(options => options.UseSqlServer(connection));
             services.AddTransient(typeof(Repositories.HeroRepository));
             
             // Add framework services.
