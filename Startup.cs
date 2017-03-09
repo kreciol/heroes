@@ -27,14 +27,14 @@ namespace goldencardAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = Configuration.GetConnectionString("MS_TableConnectionString");
+            //var connection = Configuration.GetConnectionString("MS_TableConnectionString");
 
             //var connection = @"Server=.;Database=Heroes;Trusted_Connection=True;";
 
 
             //services.AddDbContext<Models.HeroContext>(options => options.UseInMemoryDatabase());
-            services.AddDbContext<Models.HeroContext>(options => options.UseSqlServer(connection));
-            services.AddTransient(typeof(Repositories.HeroRepository));
+            //services.AddDbContext<Models.HeroContext>(options => options.UseSqlServer(connection));
+            //services.AddTransient(typeof(Repositories.HeroRepository));
             
             // Add framework services.
             services.AddMvc();
