@@ -27,7 +27,7 @@ namespace Controllers
                 new Hero() { Id = 2, Name = "b" },
                 new Hero() { Id = 3, Name = "c" },
                 new Hero() { Id = 4, Name = "d" }
-            }
+            };
         }
 
         // GET api/heroes/5
